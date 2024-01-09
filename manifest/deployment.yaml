@@ -15,5 +15,5 @@ spec:
         app: go-server-ci
     spec:
       containers:
-      - image: marusoftwaremaruos/go-server-ci
+      - image: marusoftwaremaruos/go-server-ci:multi
         name: go-server-ci
