@@ -37,7 +37,7 @@ jobs:
         id: update-image-tag
         continue-on-error: true
         run: |
-          yq eval '.spec.template.spec.containers[0].image = "ghcr.io/2023-4400-exp/学生番号-go-server-ci:"+env(GITHUB_SHA)' -i ./manifest/deployment.yaml
+          yq eval '.spec.template.spec.containers[0].image = "ghcr.io/2023-4400-exp/4415-go-server-ci:"+env(GITHUB_SHA)' -i ./manifest/deployment.yaml
           git diff --name-only --exit-code
 
 
