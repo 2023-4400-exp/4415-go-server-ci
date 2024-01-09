@@ -15,20 +15,5 @@ spec:
         app: go-server-ci
     spec:
       containers:
-      - image: marusoftwaremaruos/go-server-ci:multi
+      - image: marusoftwaremaruos/go-server-ci
         name: go-server-ci
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: go-server-ci
-  name: go-server-ci
-spec:
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: go-server-ci
-  type: NodePort
