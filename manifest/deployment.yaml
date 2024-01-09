@@ -15,5 +15,5 @@ spec:
         app: go-server-ci
     spec:
       containers:
-      - image: marusoftwaremaruos/go-server-ci:multi
+      - image: ghcr.io/2023-4400-exp/4415-go-server-ci:b3f1ca11e0ac4ed365088f95a96317474e68f3a7
         name: go-server-ci
