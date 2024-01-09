@@ -1,5 +1,8 @@
 name: "Build"
-on: [push]
+on:
+  push:
+    paths-ignore:
+      - "manifest/**"
 
 jobs:
   Build:
@@ -29,3 +32,20 @@ jobs:
             --push \
             --platform linux/arm/v7,linux/amd64 \
             -t ghcr.io/2023-4400-exp/4415-go-server-ci:${{ github.sha }} .
+
+      - name: Update manifest image tag
+        id: update-image-tag
+        continue-on-error: true
+        run: |
+          yq eval '.spec.template.spec.containers[0].image = "ghcr.io/2023-4400-exp/学生番号-go-server-ci:"+env(GITHUB_SHA)' -i ./manifest/deployment.yaml
+          git diff --name-only --exit-code
+
+
+      - name: Commit/Push manifest
+        if: steps.update-image-tag.outcome == 'failure'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email github-actions[bot]@users.noreply.github.com
+          git add .
+          git commit --author=. -m "Update image tag to $GITHUB_SHA"
+          git push
