@@ -22,6 +22,6 @@ func Hello() echo.HandlerFunc {
 
 func ApiHelloGet() echo.HandlerFunc {
     return func(c echo.Context) error {
-        return c.JSON(http.StatusOK, map[string]interface{}{"studentId": "4415", "message": "Python is the best language!"})
+        return c.JSON(http.StatusOK, map[string]interface{}{"studentId": "4415", "message": "Python is the best language! If you using other language, it should switch to python right now."})
     }
 }
